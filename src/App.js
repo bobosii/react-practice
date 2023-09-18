@@ -5,10 +5,20 @@ import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
 
 export default class App extends Component {
-  state = { currentCategory: "" };
+  state = { currentCategory: "", products: [] };
+
+  componentDidMount() {
+    this.getProducts();
+  }
 
   changeCategory = (category) => {
     this.setState({ currentCategory: category.categoryName });
+  };
+
+  getProducts = () => {
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((data) => this.setState({ products: data }));
   };
 
   render() {
@@ -30,8 +40,10 @@ export default class App extends Component {
             </Col>
             <Col xs="9">
               <ProductList
-              currentCategory={this.state.currentCategory}
-              info={productInfo} />
+                products={this.state.products}
+                currentCategory={this.state.currentCategory}
+                info={productInfo}
+              />
             </Col>
           </Row>
         </Container>
