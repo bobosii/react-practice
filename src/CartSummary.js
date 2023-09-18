@@ -37,6 +37,8 @@ export default class CartSummary extends Component {
     );
   }
 
+  
+
   renderEmptyCart() {
     return (
       <NavItem>

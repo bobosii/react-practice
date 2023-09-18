@@ -3,6 +3,7 @@ import Navi from "./Navi";
 import { Container, Row, Col } from "reactstrap";
 import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
+import alertify from "alertifyjs";
 
 export default class App extends Component {
   state = { currentCategory: "", products: [], cart: [] };
@@ -34,11 +35,13 @@ export default class App extends Component {
       newCart.push({ product: product, quantitiy: 1 });
     }
     this.setState({ cart: newCart });
+    alertify.success(product.productName + " Added to cart");
   };
 
   removeFromCart = (product) => {
     let newCart = this.state.cart.filter((c) => c.product.id !== product.id); // gönderdiğim id dışındakileri filtrelemiş ol demek.
     this.setState({ cart: newCart });
+    alertify.error(product.productName + " Removed from cart");
   };
 
   render() {
