@@ -25,6 +25,11 @@ export default class CategoryList extends Component {
               category // her bir kategori için bir li oluştur demek.
             ) => (
               <ListGroupItem
+                active={
+                  category.categoryName === this.props.currentCategory
+                    ? true
+                    : false
+                }
                 onClick={
                   () => this.props.changeCategory(category)
                   // onclick eventi bir fonksiyon gönderdiği için ()=> şeklinde yazmalısın
@@ -38,7 +43,6 @@ export default class CategoryList extends Component {
             )
           )}
         </ListGroup>
-        <h3>{this.props.currentCategory}</h3>
       </div>
     );
   }
