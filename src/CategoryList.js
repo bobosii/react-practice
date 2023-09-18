@@ -3,15 +3,17 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 
 export default class CategoryList extends Component {
   state = {
-    categories: [
-      { categoryId: 1, categoryName: "Beverages" },
-      { categoryId: 2, categoryName: "Condiments" },
-    ],
-    currentCategory: "",
+    categories: [],
   };
-  changeCategory = (category)=>{
-    this.setState({ currentCategory: category.categoryName })
+  componentDidMount() {
+    this.getCategories();
   }
+
+  getCategories = () => {
+    fetch("http://localhost:3000/categories")
+      .then((response) => response.json())
+      .then((data) => this.setState({ categories: data }));
+  };
 
   render() {
     return (
@@ -23,10 +25,11 @@ export default class CategoryList extends Component {
               category // her bir kategori için bir li oluştur demek.
             ) => (
               <ListGroupItem
-                onClick={() => this.changeCategory(category)
+                onClick={
+                  () => this.props.changeCategory(category)
                   // onclick eventi bir fonksiyon gönderdiği için ()=> şeklinde yazmalısın
                 }
-                key={category.categoryId}
+                key={category.id}
               >
                 {category.categoryName}
               </ListGroupItem>
@@ -35,7 +38,7 @@ export default class CategoryList extends Component {
             )
           )}
         </ListGroup>
-        <h3>{this.state.currentCategory}</h3>
+        <h3>{this.props.currentCategory}</h3>
       </div>
     );
   }
