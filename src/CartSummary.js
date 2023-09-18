@@ -18,6 +18,12 @@ export default class CartSummary extends Component {
         <DropdownMenu right>
           {this.props.cart.map((cartItem) => (
             <DropdownItem key={cartItem.product.id}>
+              <Badge
+                color="danger"
+                onClick={() => this.props.removeFromCart(cartItem.product)}
+              >
+                X
+              </Badge>
               {cartItem.product.productName}
 
               <Badge color="success">{cartItem.quantitiy}</Badge>
@@ -31,15 +37,21 @@ export default class CartSummary extends Component {
     );
   }
 
-  renderEmptyCart(){
-    return(
-        <NavItem>
-            <NavLink>Empty</NavLink>
-        </NavItem>
-    )
+  renderEmptyCart() {
+    return (
+      <NavItem>
+        <NavLink>Empty</NavLink>
+      </NavItem>
+    );
   }
 
   render() {
-    return <div>{this.props.cart.length>0?this.renderSummary():this.renderEmptyCart()}</div>;
+    return (
+      <div>
+        {this.props.cart.length > 0
+          ? this.renderSummary()
+          : this.renderEmptyCart()}
+      </div>
+    );
   }
 }
