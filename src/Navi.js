@@ -34,6 +34,9 @@ export default class Navi extends Component {
             <NavLink>
               <Link to="/">Main Page</Link>
             </NavLink>
+            <NavLink>
+              <Link to="/form2">Form Demo 2</Link>
+            </NavLink>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
