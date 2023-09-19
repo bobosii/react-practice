@@ -7,6 +7,7 @@ import alertify from "alertifyjs";
 import { Route, Routes } from "react-router-dom";
 import Notfound from "./NotFound";
 import CartList from "./CartList";
+import FormDemo1 from "./FormDemo1";
 
 export default class App extends Component {
   state = { currentCategory: "", products: [], cart: [] };
@@ -79,12 +80,13 @@ export default class App extends Component {
                   path="/cart"
                   element={
                     <CartList
-                    removeFromCart={this.removeFromCart}
-                    cart={this.state.cart}
+                      removeFromCart={this.removeFromCart}
+                      cart={this.state.cart}
                     />
                   }
                 ></Route>
-                  <Route path="*" element={<Notfound></Notfound>}></Route>
+                <Route path="form1" element={<FormDemo1></FormDemo1>}></Route>
+                <Route path="*" element={<Notfound></Notfound>}></Route>
               </Routes>
             </Col>
           </Row>

@@ -31,16 +31,24 @@ export default class Navi extends Component {
       <div>
         <Navbar color="light" light-expand="md">
           <NavbarBrand href="/">
-            <Link to="/">Main Page</Link>
+            <NavLink>
+              <Link to="/">Main Page</Link>
+            </NavLink>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink>
+                  <Link color="light" to="form1">
+                    Form Demo 1
+                  </Link>
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/bobosii/react-practice">Github</NavLink>
+                <NavLink href="https://github.com/bobosii/react-practice">
+                  Github
+                </NavLink>
               </NavItem>
               <CartSummary
                 cart={this.props.cart}
