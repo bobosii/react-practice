@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import CategoryList from "./CategoryList";
 import ProductList from "./ProductList";
 import alertify from "alertifyjs";
-import { Route, Routes, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Notfound from "./NotFound";
 import CartList from "./CartList";
 
@@ -75,8 +75,16 @@ export default class App extends Component {
                     />
                   }
                 ></Route>
-                <Route path="*" element={<Notfound></Notfound>}></Route>
-                <Route path="/cart" element={<CartList></CartList>}></Route>
+                <Route
+                  path="/cart"
+                  element={
+                    <CartList
+                    removeFromCart={this.removeFromCart}
+                    cart={this.state.cart}
+                    />
+                  }
+                ></Route>
+                  <Route path="*" element={<Notfound></Notfound>}></Route>
               </Routes>
             </Col>
           </Row>
